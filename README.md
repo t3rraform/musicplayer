@@ -18,7 +18,7 @@ or run the jar file using this command:
 
  ```java --module-path "<Path to JavaFX>\lib" --add-modules javafx.controls,javafx.fxml,javafx.media --add-exports javafx.graphics/com.sun.javafx.sg.prism=ALL-UNNAMED -jar Musicplayer.jar ```
  
- Java 8+ is required to run it and JavaFX 2 if run from jar.
+ Java 8+ is required to run it and JavaFX 2 if run from the jar.
 
 <br>
 
