@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<AnchorPane id="center" prefHeight="514.0" prefWidth="715.0" stylesheets="@application.css" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.ek.musicplayer.controller.YoutubeController">
+    <children>
+        <TableView fx:id="table" layoutY="102.0" prefHeight="413.0" prefWidth="715.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+            <placeholder>
+                <Label text="" />
+            </placeholder>
+            <columns>
+                <TableColumn fx:id="coverImage" prefWidth="70.0" resizable="false" />
+                <TableColumn fx:id="title" minWidth="150.0" prefWidth="200.0" text="Title" />
+                <TableColumn fx:id="artist" minWidth="75.0" prefWidth="100.0" text="Artist" />
+                <TableColumn fx:id="duration" maxWidth="80.0" minWidth="50.0" resizable="false" text="Duration" />
+                <TableColumn fx:id="uri" maxWidth="200.0" minWidth="120.0" prefWidth="180.0" text="Source" />
+            <TableColumn fx:id="status" maxWidth="50.0" minWidth="30.0" prefWidth="30.0" />
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>

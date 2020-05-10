@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="42.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <AnchorPane fx:id="dragPane" layoutY="6.0" prefHeight="35.0" prefWidth="594.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="130.0" />
+        <ImageView fitHeight="12.0" fitWidth="12.0" layoutX="621.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="100.0">
+            <image>
+                <Image url="@images/minimize.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="12.0" fitWidth="12.0" layoutX="651.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="60.0">
+            <image>
+                <Image url="@images/maximize.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="12.0" fitWidth="12.0" layoutX="681.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0">
+            <image>
+                <Image url="@images/close.png" />
+            </image>
+        </ImageView>
+        <Pane fx:id="minimize" layoutX="594.0" layoutY="6.0" prefHeight="30.0" prefWidth="30.0" AnchorPane.rightAnchor="90.0" />
+        <Pane fx:id="resize" layoutX="634.0" layoutY="6.0" prefHeight="30.0" prefWidth="30.0" AnchorPane.rightAnchor="50.0" />
+        <Pane fx:id="close" layoutX="674.0" layoutY="6.0" prefHeight="30.0" prefWidth="30.0" AnchorPane.rightAnchor="10.0" />
+
+    </children>
+</AnchorPane>
