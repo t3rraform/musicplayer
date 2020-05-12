@@ -22,7 +22,7 @@ or run the jar file using this command:
 
 <br>
 
-![alt tag](https://github.com/t3rraform/musicplayer/blob/master/Thumbnail.png)
+![alt tag](https://github.com/t3rraform/musicplayer/blob/master/Musicplayer.png)
 
 <details>
   <summary>A glimpse of the first music player</summary>
