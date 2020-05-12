@@ -273,7 +273,7 @@ public final class MainController implements Initializable {
         if (getFileNameFromURL(location).equals("Main.fxml")) {
             log.debug("Main init");
             BorderPane waveVisualizationContainer = new BorderPane();
-            waveVisualizationContainer.setPrefSize(240, 50);
+            waveVisualizationContainer.setPrefSize(240, 48);
             waveVisualizationContainer.setCenter(waveVisualization);
 
             timeSliderContainer.getChildren().add(0, waveVisualizationContainer);

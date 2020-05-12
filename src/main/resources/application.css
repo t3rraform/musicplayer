@@ -66,7 +66,7 @@
 #timeSlider .track {
     /*-fx-background-color: #ED6663;*/
     -fx-background-color: tranparent;
-    -fx-pref-height: 50px;
+    -fx-pref-height: 48px;
 }
 
 #timeSlider .thumb {
@@ -74,7 +74,7 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
     -fx-background-color: transparent;
-    -fx-pref-height: 50px;
+    -fx-pref-height: 48px;
     -fx-pref-width: 1.3px;
 }
 
