@@ -99,7 +99,6 @@ public class Song implements Serializable {
         Song song = (Song) o;
         return Objects.equals(title, song.title) &&
                 Objects.equals(artist, song.artist) &&
-                Objects.equals(album, song.album) &&
                 Objects.equals(duration, song.duration);
     }
 

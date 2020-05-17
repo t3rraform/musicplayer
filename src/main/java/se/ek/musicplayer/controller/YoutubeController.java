@@ -87,9 +87,6 @@ public class YoutubeController implements Initializable {
         table.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
             if (table.getSelectionModel().getSelectedItem() != null) {
                 selectedSong = newValue;
-                if (newValue != null) {
-                    mainController.setNewSongInstance(true);
-                }
             }
         });
 
@@ -128,6 +125,7 @@ public class YoutubeController implements Initializable {
                         log.info("SelectedSong found playing it " + selectedSong.getPath());
                         mainController.setSelectedSong(selectedSong);
                         mainController.startWaveVisualization();
+                        mainController.setNewSongInstance(true);
                         mainController.playSound();
                     }
                 }

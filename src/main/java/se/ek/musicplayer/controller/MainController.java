@@ -156,7 +156,7 @@ public final class MainController implements Initializable {
     private List<Integer> previousSelectedSongs = new ArrayList<>();
     private int previousSelectedSongsIndex = 0;
 
-    private InvalidationListener listen;
+    private boolean updateTimeSliderFromMp = true;
     public ObservableList<Song> tableItems = FXCollections.observableArrayList();
     public ObservableList<Playlist> playlistItems = FXCollections.observableArrayList();
 
@@ -175,15 +175,9 @@ public final class MainController implements Initializable {
     public void loadTitleBar() {
         titleBarObj = loadFXMLFile("/TitleBar.fxml", this);
 
-        close.setOnMousePressed(event -> {
-            stage.close();
-        });
-        resize.setOnMousePressed(event -> {
-            stage.setMaximized(maximized = !maximized);
-        });
-        minimize.setOnMousePressed(event -> {
-            stage.setIconified(true);
-        });
+        close.setOnMousePressed(event -> stage.close());
+        resize.setOnMousePressed(event -> stage.setMaximized(maximized = !maximized));
+        minimize.setOnMousePressed(event -> stage.setIconified(true));
 
         dragPane.setOnMousePressed(this::titleBarMousePressed);
         dragPane.setOnMouseClicked(this::titleBarMouseClicked);
@@ -222,7 +216,7 @@ public final class MainController implements Initializable {
         search.setPromptText("Search in playlist");
         tableItems.clear();
         tableItems.addAll(selectedPlaylist.getSongs());
-        ((Pane) root).getChildren().add(titleBarObj);
+        if (root != null) ((Pane) root).getChildren().add(titleBarObj);
         borderPane.setCenter(root);
         currentView = CurrentView.PLAYLIST;
         youtubeLabel.setStyle("-fx-text-fill: #bbbbbb");
@@ -393,7 +387,6 @@ public final class MainController implements Initializable {
                     selectedSong = newValue;
                     selectedSongIndex = table.getSelectionModel().getSelectedIndex();
                     if (newValue != null) newSongInstance = true;
-                    startWaveVisualization();
                 }
             });
             table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -427,15 +420,16 @@ public final class MainController implements Initializable {
 
             timeSlider.setMin(0);
             timeSlider.setMax(1);
-            timeSlider.valueProperty().addListener(ov -> {
-                if (timeSlider.isValueChanging()) {
-                    durationValue = mp.getMedia().getDuration();
-                    mp.seek(durationValue.multiply(timeSlider.getValue()));
-                }
+            timeSlider.setOnMouseClicked(mouseEvent -> timeSlider.setValue(mouseEvent.getX() / timeSlider.getWidth() * timeSlider.getMax()));
+            timeSlider.setOnMousePressed(mouseEvent -> {
+                timeSlider.setValue(mouseEvent.getX() / timeSlider.getWidth() * timeSlider.getMax());
+                updateTimeSliderFromMp = false;
             });
-            timeSlider.setOnMouseClicked(e -> {
-                timeSlider.setValue(e.getX() / timeSlider.getWidth() * timeSlider.getMax());
-                mp.seek(durationValue.multiply(e.getX() / timeSlider.getWidth() * timeSlider.getMax()));
+
+            timeSlider.setOnMouseReleased(mouseEvent -> {
+                durationValue = mp.getMedia().getDuration();
+                mp.seek(durationValue.multiply(mouseEvent.getX() / timeSlider.getWidth() * timeSlider.getMax()));
+                updateTimeSliderFromMp = true;
             });
         }
     }
@@ -459,7 +453,7 @@ public final class MainController implements Initializable {
     }
 
     public void startWaveVisualization() {
-        waveVisualization.getWaveService().reset(); //TODO fix illegalstate exception
+        waveVisualization.getWaveService().reset();
         waveVisualization.getWaveService().startService(selectedSong.getPath(), WaveFormService.WaveFormJob.AMPLITUDES_AND_WAVEFORM);
     }
 
@@ -470,7 +464,7 @@ public final class MainController implements Initializable {
         for (File file : Objects.requireNonNull(musicFolder.listFiles())) {
             String fileName = file.getName();
             String extension = fileName.substring(fileName.lastIndexOf('.') + 1);
-            String title = "", artist = "", album = "";
+            String title, artist = "", album = "";
             byte[] imageData = null;
             if (extension.equals("mp3") || extension.equals("wav")) {
                 try {
@@ -591,23 +585,10 @@ public final class MainController implements Initializable {
 
     public void displayTime() {
         Timeline timeline = new Timeline();
-        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(0.5), (ActionEvent actionEvent) -> {
-            time.setText(getDurationFormatted((int) mp.getCurrentTime().toSeconds()));
-        }));
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(0.5), (ActionEvent actionEvent) -> time.setText(getDurationFormatted((int) mp.getCurrentTime().toSeconds()))));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
         durationLabel.setText(selectedSong.getDuration());
-    }
-
-    public void timeSlider() {
-        Platform.runLater(() -> {
-            double currentTime = mp.getCurrentTime().toMillis();
-            try {
-                timeSlider.setValue(currentTime / mp.getMedia().getDuration().toMillis());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
     }
 
     public void playSound() {
@@ -617,6 +598,7 @@ public final class MainController implements Initializable {
                     mp.stop();
                     play_btn.setImage(playImage);
                     playing = false;
+                    startWaveVisualization();
                 }
                 Media hit = new Media(Paths.get(selectedSong.getPath()).toUri().toString());
                 mp = new MediaPlayer(hit);
@@ -636,8 +618,10 @@ public final class MainController implements Initializable {
                 songImage.setSmooth(true);
                 songImage.setPreserveRatio(false);
 
-                listen = ov -> {
-                    timeSlider();
+                InvalidationListener listen = ov -> {
+                    double currentTime = mp.getCurrentTime().toMillis();
+                    if (updateTimeSliderFromMp)
+                        timeSlider.setValue(currentTime / mp.getMedia().getDuration().toMillis());
                     mp.setOnEndOfMedia(() -> {
                         mp.dispose();
                         if (repeat) {

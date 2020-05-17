@@ -15,51 +15,51 @@
     <bottom>
         <AnchorPane fx:id="bottomPane" minHeight="85.0" prefHeight="85.0" prefWidth="900.0" style="-fx-background-color: #3A3B3E;" BorderPane.alignment="CENTER">
             <children>
-                <ImageView fx:id="right" fitHeight="18.0" fitWidth="18.0" layoutX="397.0" layoutY="34.0" onMouseClicked="#nextSong" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="right" fitHeight="18.0" fitWidth="18.0" layoutX="393.0" layoutY="34.0" onMouseClicked="#nextSong" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@/images/next.png" />
                     </image>
                 </ImageView>
-                <ImageView fx:id="play_btn" fitHeight="42.0" fitWidth="42.0" layoutX="330.0" layoutY="22.0" onMouseClicked="#playSound" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="play_btn" fitHeight="42.0" fitWidth="42.0" layoutX="326.0" layoutY="22.0" onMouseClicked="#playSound" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@/images/play.png" />
                     </image>
                 </ImageView>
-                <ImageView fx:id="left" fitHeight="18.0" fitWidth="18.0" layoutX="287.0" layoutY="34.0" onMouseClicked="#previousSong" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="left" fitHeight="18.0" fitWidth="18.0" layoutX="283.0" layoutY="34.0" onMouseClicked="#previousSong" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@/images/back.png" />
                     </image>
                 </ImageView>
-                <Label fx:id="time" layoutX="437.0" layoutY="35.0" styleClass="medium" stylesheets="@application.css" text="0:00" textFill="WHITE">
+                <Label fx:id="time" layoutX="436.0" layoutY="35.0" styleClass="medium" stylesheets="@application.css" text="0:00" textFill="WHITE">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Label>
-            <AnchorPane fx:id="timeSliderContainer" layoutX="474.0" layoutY="20.0" minWidth="100.0" prefHeight="50.0" prefWidth="240.0" AnchorPane.leftAnchor="474.0" AnchorPane.rightAnchor="286.0">
+            <AnchorPane fx:id="timeSliderContainer" layoutX="473.0" layoutY="20.0" minWidth="100.0" prefHeight="50.0" prefWidth="240.0" AnchorPane.leftAnchor="473.0" AnchorPane.rightAnchor="287.0">
                <children>
-                      <Slider fx:id="timeSlider" maxWidth="500.0" minWidth="100.0" prefHeight="10.0" prefWidth="240.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                      <Slider fx:id="timeSlider" layoutX="2.0" maxWidth="500.0" minWidth="100.0" prefHeight="10.0" prefWidth="240.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="-2.0" />
                </children></AnchorPane>
-                <Label fx:id="durationLabel" layoutX="720.0" layoutY="35.0" styleClass="medium" stylesheets="@application.css" text="1:00" textFill="WHITE" AnchorPane.rightAnchor="253.60000000000002">
+                <Label fx:id="durationLabel" layoutX="722.0" layoutY="35.0" styleClass="medium" stylesheets="@application.css" text="1:00" textFill="WHITE" AnchorPane.rightAnchor="251.60000000000002">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <ImageView fx:id="replayButton" fitHeight="22.0" fitWidth="22.0" layoutX="756.0" layoutY="32.0" onMouseClicked="#repeat" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="222.0">
+                <ImageView fx:id="replayButton" fitHeight="22.0" fitWidth="22.0" layoutX="763.8000000000003" layoutY="32.0" onMouseClicked="#repeat" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="214.1999999999997">
                     <image>
                         <Image url="@/images/replay.png" />
                     </image>
                 </ImageView>
-                <ImageView fx:id="shuffleButton" fitHeight="17.0" fitWidth="17.0" layoutX="791.0" layoutY="35.0" onMouseClicked="#shuffle" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="192.0">
+                <ImageView fx:id="shuffleButton" fitHeight="17.0" fitWidth="17.0" layoutX="796.1999999999997" layoutY="35.0" onMouseClicked="#shuffle" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="186.8000000000003">
                     <image>
                         <Image url="@/images/shuffle.png" />
                     </image>
                 </ImageView>
-                <ImageView fx:id="mute_img" fitHeight="18.0" fitWidth="18.0" layoutX="832.0" layoutY="35.0" onMouseClicked="#mute" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="150.0">
+                <ImageView fx:id="mute_img" fitHeight="18.0" fitWidth="18.0" layoutX="836.8000000000002" layoutY="35.0" onMouseClicked="#mute" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="145.19999999999982">
                     <image>
                         <Image url="@/images/volume.png" />
                     </image>
                 </ImageView>
-                <Slider fx:id="volume" layoutX="859.0" layoutY="36.0" prefHeight="7.0" prefWidth="100.0" AnchorPane.rightAnchor="41.0" />
+                <Slider fx:id="volume" layoutX="865.0" layoutY="36.0" prefHeight="7.0" prefWidth="100.0" AnchorPane.rightAnchor="35.0" />
                 <Label fx:id="trackLabel" layoutX="128.0" layoutY="14.0" prefHeight="18.0" prefWidth="130.0" styleClass="trackLabel" stylesheets="@application.css" textFill="WHITE" />
                 <Label fx:id="artistLabel" layoutX="128.0" layoutY="36.0" prefHeight="18.0" prefWidth="130.0" styleClass="artistLabel" stylesheets="@application.css" textFill="WHITE" />
                 <ImageView fx:id="songImage" fitHeight="90.0" fitWidth="115.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
